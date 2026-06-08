@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <style>
+        body { font-family: sans-serif; padding: 20px; background: #f9f9f9; }
+        .card { background: white; padding: 15px; margin: 10px 0; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .search-box { width: 100%; padding: 10px; margin-bottom: 20px; }
+        button { cursor: pointer; background: #007bff; color: white; border: none; padding: 5px 10px; border-radius: 4px; }
+    </style>
+</head>
+<body>
+
+    <h2>Система оценки преподавателей</h2>
+    <input type="text" id="search" class="search-box" placeholder="Поиск преподавателя...">
+
+    <div id="teacher-list">
+        <div class="card" data-name="Иван Иванов">
+            <h3>Иван Иванов</h3>
+            <p>Рейтинг: <span class="rating">5</span></p>
+            <button onclick="rate(this)">Поставить лайк</button>
+        </div>
+        <div class="card" data-name="Анна Петрова">
+            <h3>Анна Петрова</h3>
+            <p>Рейтинг: <span class="rating">4</span></p>
+            <button onclick="rate(this)">Поставить лайк</button>
+        </div>
+    </div>
+
+    <script>
+        // Поиск
+        document.getElementById('search').addEventListener('input', (e) => {
+            const val = e.target.value.toLowerCase();
+            document.querySelectorAll('.card').forEach(card => {
+                card.style.display = card.dataset.name.toLowerCase().includes(val) ? '' : 'none';
+            });
+        });
+
+        // Рейтинг
+        function rate(btn) {
+            let span = btn.parentElement.querySelector('.rating');
+            span.innerText = parseInt(span.innerText) + 1;
+        }
+    </script>
+</body>
+</html>
