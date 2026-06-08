@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .board { display: flex; gap: 20px; padding: 20px; }
+        .column { background: #f4f4f4; width: 200px; padding: 10px; border-radius: 5px; min-height: 200px; }
+        .task { background: white; padding: 10px; margin-bottom: 10px; border: 1px solid #ddd; cursor: grab; }
+    </style>
+</head>
+<body>
+
+<h3>TaskFlow: Kanban Board</h3>
+<div class="board">
+    <div id="todo" class="column"><h4>To Do</h4>
+        <div class="task">Задача 1</div>
+        <div class="task">Задача 2</div>
+    </div>
+    <div id="done" class="column"><h4>Done</h4></div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+<script>
+    new Sortable(document.getElementById('todo'), { group: 'shared' });
+    new Sortable(document.getElementById('done'), { group: 'shared' });
+</script>
+
+</body>
+</html>
