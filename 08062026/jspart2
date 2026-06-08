@@ -1,0 +1,34 @@
+// Эмуляция базы данных задач
+let tasks = [
+    { id: 1, title: "Написать документацию", status: "TODO" },
+    { id: 2, title: "Настроить CI/CD", status: "IN_PROGRESS" }
+];
+
+// CRUD: Создание
+const addTask = (title) => {
+    const newTask = { id: tasks.length + 1, title, status: "TODO" };
+    tasks.push(newTask);
+    console.log(`Задача добавлена: ${title}`);
+};
+
+// CRUD: Перемещение (Drag-and-drop логика)
+const moveTask = (id, newStatus) => {
+    const task = tasks.find(t => t.id === id);
+    if (task) {
+        task.status = newStatus;
+        console.log(`Задача "${task.title}" перемещена в ${newStatus}`);
+    }
+};
+
+// CRUD: Удаление
+const deleteTask = (id) => {
+    tasks = tasks.filter(t => t.id !== id);
+    console.log(`Задача ${id} удалена.`);
+};
+
+// Демонстрация
+console.log("--- Начальный список ---", tasks);
+addTask("Проверить Pull Request");
+moveTask(1, "DONE");
+deleteTask(2);
+console.log("--- Итоговый список ---", tasks);
